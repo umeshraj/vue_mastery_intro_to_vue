@@ -14,7 +14,7 @@ let app = new Vue({
       {
         variantId: 2235,
         variantColor: "blue",
-        variantImage: "./assets/vmSocks-blue-onWhite",
+        variantImage: "./assets/vmSocks-blue-onWhite.jpg",
       },
     ],
     cart: 0,
@@ -22,6 +22,9 @@ let app = new Vue({
   methods: {
     addToCart: function () {
       this.cart += 1;
+    },
+    updateProduct: function (variantImage) {
+      this.image = variantImage;
     },
   },
 });
