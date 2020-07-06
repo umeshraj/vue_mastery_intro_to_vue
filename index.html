@@ -30,11 +30,13 @@
           </ul>
 
           <!-- variants -->
-          <div v-for="variant in variants" :key="variant.variantId">
-            <p @mouseover="updateProduct(variant.variantImage)">
-              {{variant.variantColor}}
-            </p>
-          </div>
+          <div
+            v-for="variant in variants"
+            :key="variant.variantId"
+            class="color-box"
+            :style="{backgroundColor: variant.variantColor}"
+            @mouseover="updateProduct(variant.variantImage)"
+          ></div>
 
           <!-- cart -->
           <button v-on:click="addToCart">Add to Cart</button>
