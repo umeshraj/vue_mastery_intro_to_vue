@@ -38,6 +38,8 @@ Vue.component("product", {
       Add to Cart
     </button>
 
+    <product-tabs></product-tabs>
+
   <div>
    <h2>Reviews</h2>
    <p v-if="!reviews.length">There are no reviews.</p>
@@ -169,6 +171,19 @@ Vue.component("product-review", {
         if (!this.rating) this.errors.push("Rating requied");
       }
     },
+  },
+});
+
+Vue.component("product-tabs", {
+  template: `
+    <div>
+    <span class="tab" v-for="(tab, index) in tabs" :key="index"> {{tab}}</span>
+    </div>
+  `,
+  data() {
+    return {
+      tabs: ["Review", "Make a review"],
+    };
   },
 });
 
