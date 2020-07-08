@@ -175,7 +175,7 @@ Vue.component("product-tabs", {
     @click="selectedTab = tab"
     > {{tab}}</span>
 
-    <div>
+    <div v-show="selectedTab === 'Reviews'">
     <p v-if="!reviews.length">There are no reviews.</p>
     <ul>
     <li v-for="review in reviews">
@@ -186,7 +186,7 @@ Vue.component("product-tabs", {
     </ul>
    </div>
  
-   <product-review @review-submitted="addReview"></product-review>
+   <product-review v-show="selectedTab === 'Make a review'" @review-submitted="addReview"></product-review>
 
 
     </div>
