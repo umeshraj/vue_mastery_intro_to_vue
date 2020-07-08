@@ -1,3 +1,5 @@
+var eventBus = new Vue();
+
 Vue.component("product", {
   props: {
     premium: { type: Boolean, required: true },
@@ -72,9 +74,6 @@ Vue.component("product", {
       // console.log(index);
       this.selectedVariant = index;
     },
-    addReview(productReview) {
-      this.reviews.push(productReview);
-    },
   },
   computed: {
     title() {
@@ -89,6 +88,11 @@ Vue.component("product", {
     shipping() {
       return this.premium ? "Free" : 2.99;
     },
+  },
+  mounted() {
+    eventBus.$on("review-submitted", (productReview) => {
+      this.reviews.push(productReview);
+    });
   },
 });
 
@@ -146,7 +150,7 @@ Vue.component("product-review", {
           review: this.review,
           rating: this.rating,
         };
-        this.$emit("review-submitted", productReview);
+        eventBus.$emit("review-submitted", productReview);
         this.name = null;
         this.review = null;
         this.rating = null;
@@ -186,7 +190,7 @@ Vue.component("product-tabs", {
     </ul>
    </div>
  
-   <product-review v-show="selectedTab === 'Make a review'" @review-submitted="addReview"></product-review>
+   <product-review v-show="selectedTab === 'Make a review'"></product-review>
 
 
     </div>
